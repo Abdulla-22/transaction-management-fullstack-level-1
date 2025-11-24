@@ -1,39 +1,94 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Transaction Management</title>
-  <link rel="stylesheet" href="styles.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Accounting App</title>
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      max-width: 900px;
+      margin: 24px auto;
+      padding: 0 16px;
+    }
+
+    h1 {
+      margin-bottom: 8px;
+    }
+
+    form {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+
+    input[type="text"],
+    input[type="number"] {
+      padding: 8px;
+      font-size: 14px;
+    }
+
+    input[type="submit"] {
+      padding: 8px 12px;
+      font-size: 14px;
+    }
+
+    #transaction-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .transaction {
+      border: 1px solid #ddd;
+      padding: 10px;
+      border-radius: 6px;
+      background: #fff;
+    }
+
+    .transaction-amount {
+      font-weight: 700;
+      font-size: 16px;
+    }
+
+    .transaction-amount.positive {
+      color: #0a7a07;
+    }
+
+    .transaction-amount.negative {
+      color: #c43d3d;
+    }
+
+    .balance {
+      margin-top: 8px;
+      font-style: italic;
+    }
+
+    .meta {
+      color: #666;
+      font-size: 13px;
+    }
+  </style>
 </head>
+
 <body>
-  <h1>Transaction Management</h1>
-  
+  <h1>Accounting App</h1>
+
   <form id="transaction-form">
-    <label for="account-id">Account ID:</label>
-    <input 
-      id="account-id" 
-      data-type="account-id" 
-      type="text" 
-      placeholder="Enter account ID (UUID)"
-      required
-    />
-    
-    <label for="amount">Amount:</label>
-    <input 
-      id="amount" 
-      data-type="amount" 
-      type="number" 
-      step="0.01"
-      placeholder="Enter amount (positive for deposit, negative for withdrawal)"
-      required
-    />
-    
-    <input data-type="transaction-submit" type="submit" value="Submit Transaction" />
+    <input data-type="account-id" type="text" name="account_id" placeholder="Account ID (uuid)" aria-label="Account ID"
+      required />
+
+    <input data-type="amount" type="number" name="amount" step="0.01" placeholder="Amount (e.g. 10 or -5)"
+      aria-label="Amount" required />
+
+    <input data-type="transaction-submit" type="submit" value="Submit" />
   </form>
-  
-  <div id="transaction-list" class="transaction-list"></div>
+
+  <div id="transaction-list" aria-live="polite"></div>
 
   <script src="main.js"></script>
 </body>
+
 </html>
